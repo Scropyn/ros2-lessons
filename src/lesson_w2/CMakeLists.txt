@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(les_pkg)
+project(lesson_w2)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -8,23 +8,24 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(std_msgs REQUIRED)
-find_package(geometry_msgs REQUIRED)
+find_package(interface_pkg REQUIRED)
 
 add_executable(template_walltimer src/template_walltimer.cpp)
-add_executable(template_publisher src/template_publisher.cpp)
-add_executable(template_subscriber src/template_subscriber.cpp)
+add_executable(template_general src/template_general.cpp)
+add_executable(template_serviceserver src/template_serviceserver.cpp)
+add_executable(my_serviceserver src/my_serviceserver.cpp)
 
 ament_target_dependencies(template_walltimer rclcpp)
-ament_target_dependencies(template_publisher rclcpp std_msgs geometry_msgs)
-ament_target_dependencies(template_subscriber rclcpp std_msgs geometry_msgs)
-
+ament_target_dependencies(template_general rclcpp interface_pkg)
+ament_target_dependencies(template_serviceserver rclcpp interface_pkg)
+ament_target_dependencies(my_serviceserver rclcpp interface_pkg)
 
 install(
   TARGETS
   template_walltimer
-  template_publisher
-  template_subscriber
+  template_general
+  template_serviceserver
+  my_serviceserver
   DESTINATION lib/${PROJECT_NAME}
 
 )

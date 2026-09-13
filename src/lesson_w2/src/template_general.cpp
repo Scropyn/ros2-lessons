@@ -1,8 +1,9 @@
 /*
 --Node description: 
-...what the node is doing (functionally)... 
-When node is created the node prints "Hello you are new to ROS2" on terminal, 
-further it does nothing more than being alive
+for hw lesson custom message: sends out int and name every 3 seconds
+
+in terminal to listen: ros2 topic echo /the_answer
+
 */ 
 
 /*
@@ -23,6 +24,7 @@ one line per change
 #include "rclcpp/rclcpp.hpp"
 #include <rclcpp/clock.hpp>
 #include <rclcpp/time.hpp>
+#include "interface_pkg/msg/name.hpp"
 
 //--custom includes 
 //...
@@ -42,6 +44,8 @@ class Template_General : public rclcpp::Node
 	 //--communication and timer objects: 
 	 //see templates for subcribers, action server ... 
 	 //...  
+	 publisher_theanswer_ = this->create_publisher<interface_pkg::msg::Name>("the_answer",10);
+	 timer_template_= this->create_wall_timer(std::chrono::seconds(3),std::bind(&Template_General::custom_example,this));
 	 
 	 //--customs functions:
 		custom_example();
@@ -55,13 +59,14 @@ class Template_General : public rclcpp::Node
 	//--customs functions:
 	void custom_example()
 	{   
+		name_.my_int = 32;
+		name_.name = "Sara";
+
+		publisher_theanswer_ ->publish(name_);
 		
 
 		/*your custom example code */
-		 RCLCPP_INFO(this->get_logger() ,"Hello you are new to ROS2"); //code example
-		/*your custom example code */
-		my_time_ = this->now();
-		RCLCPP_INFO(this->get_logger() ,"Time in seconds: %f", my_time_.seconds()); 
+		 //RCLCPP_INFO(this->get_logger() ,"My name: %s, my age: %d", name_.name.c_str(), name_.my_int); //code example
 
 
 	}
@@ -71,8 +76,11 @@ class Template_General : public rclcpp::Node
 	private:
 
 	//--rclcpp variables:
-	rclcpp :: Time my_time_;
-	rclcpp :: Clock my_clock_;
+	rclcpp::Publisher<interface_pkg::msg::Name>::SharedPtr publisher_theanswer_;
+	rclcpp::TimerBase::SharedPtr timer_template_;
+	rclcpp ::Time my_time_;
+	rclcpp ::Clock my_clock_;
+	interface_pkg::msg::Name name_;
 		
 	//--custom variables:
 	//...

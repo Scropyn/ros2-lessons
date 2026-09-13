@@ -2,7 +2,10 @@
 /*
 --Node description: 
 ...what the node is doing (functionally)... 
-When node is created the node prints the answer to all every 1000 milliseconds   
+When node is created the node prints the answer to all every 2000 milliseconds   
+of 3 points x.
+
+Also used for week 2
 
 */ 
 
@@ -10,7 +13,7 @@ When node is created the node prints the answer to all every 1000 milliseconds
 --Software changes:
 one line per change 
 (1) created 31.3.2025: developer-Tilmann Koster reviewer(s)-Niek Ottens 
-(2) changed 01.4.2025: xxx functionality added ... : developer-Tilmann Koster reviewer(s)-Niek Ottens 
+(2) changed 03.9.2026: xxx functionality added ... : developer-Tilmann Koster reviewer(s)-Niek Ottens 
 ...
 */
 
@@ -66,6 +69,7 @@ class TemplatePublisher : public rclcpp::Node
 		
 		//--custom variables:
 		std_msgs::msg::Int32 message_;
+		std_msgs::msg::Int32 counter_;
 		geometry_msgs::msg::Point point1_;
 		geometry_msgs::msg::Point point2_;
 		geometry_msgs::msg::Point point3_;

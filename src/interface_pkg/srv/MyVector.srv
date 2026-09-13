@@ -1,0 +1,5 @@
+# request
+geometry_msgs/Vector3 my_vector
+---
+# response
+float64 l 
