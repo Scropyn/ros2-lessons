@@ -18,6 +18,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Name.msg" 
   "srv/TemplateS.srv" 
   "srv/MyVector.srv" #let op naamgeveing !!!! begint met grote letter en mag alleen letters en cijfers bevatten 
+  "action/TemplateA.action"
   DEPENDENCIES geometry_msgs
 )
 

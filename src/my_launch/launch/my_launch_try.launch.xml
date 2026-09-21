@@ -1,0 +1,4 @@
+<launch>
+<node pkg="les_pkg" exec="template_publisher"/>
+<node pkg="les_pkg" exec="template_subscriber"/>
+</launch>
